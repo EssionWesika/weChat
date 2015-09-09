@@ -1,0 +1,15 @@
+.font-700{
+	font-weight: 700;
+}
+.rit{
+	float: right;
+}
+.hand{
+	cursor: pointer;
+}
+.ct{
+	text-align: center;
+}
+.error-color{
+	color: #98000e;
+}
