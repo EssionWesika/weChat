@@ -5,6 +5,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,8 @@ import com.wxsys.service.ManagerService;
 @Controller
 public class IndexController extends BaseController{
 	
+	private Log log = LogFactory.getLog(IndexController.class);
+	
 	@Resource
 	AccessTokenService accessTokenService;
 	@Resource
@@ -31,6 +35,7 @@ public class IndexController extends BaseController{
 	@RequestMapping(value = "/index")
 	public String index(HttpServletRequest req,HttpServletResponse res){
 		req.getSession().setAttribute("locale", "zh_CN");
+		log.info("haha");
 		return "layout/index";
 	}
 	

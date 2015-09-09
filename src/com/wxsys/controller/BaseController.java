@@ -6,10 +6,11 @@ import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.wxsys.util.CommonUtil;
 import com.wxsys.util.SpringUtils;
 
-public class BaseController {
+public class BaseController{
 	
 	protected static final CommonUtil cu =SpringUtils.getBean("commonUtil", CommonUtil.class);
 	

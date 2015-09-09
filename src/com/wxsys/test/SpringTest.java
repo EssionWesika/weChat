@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.wxsys.model.TK_Access_Token;
 import com.wxsys.service.AccessTokenService;
+import com.wxsys.service.ManagerService;
 import com.wxsys.util.CommonUtil;
 import com.wxsys.util.SpringUtils;
 
@@ -25,7 +26,8 @@ import com.wxsys.util.SpringUtils;
 public class SpringTest extends AbstractJUnit4SpringContextTests{
 	@Resource
 	AccessTokenService accessTokenService;
-	
+	@Resource
+	ManagerService managerService; 
 	@Test
 	public void test1(){
 		/*MyStringUtil ms =SpringUtils.getBean("myStringUtil",MyStringUtil.class);
@@ -43,7 +45,7 @@ public class SpringTest extends AbstractJUnit4SpringContextTests{
 			accessTokenService.delete(a.get(j));
 		}*/
 		
-		System.out.println(SpringUtils.getBean("commonUtil", CommonUtil.class).MD5("1"));
+		System.out.println(managerService.getList());
 		
 	}
 	
