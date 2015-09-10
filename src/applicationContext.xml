@@ -129,4 +129,7 @@
     <aop:config>
         <aop:advisor id="advisor1" advice-ref="txAdvice" pointcut="execution(* com.wxsys.service..*.*(..))"/>
     </aop:config>
+    
+    <bean id="applicationListener" class="com.wxsys.util.WebAppListener" ></bean>
+    
 </beans>  

@@ -34,6 +34,7 @@ c3p0-0.9.1.jar						──数据库连接池
 junit-4.11.jar						──┥测试工具
 hamcrest-core-1.3.jar				──┻──────────	
 mysql-connector-java-5.1.18-bin.jar	──mysql数据库驱动											4
+log4j-1.2.15.jar					──日志
 
 commons-digester-2.0.jar		──xml对象解析工具
 commons-beanutils-1.8.0.jar		──javaBean工具
@@ -46,4 +47,4 @@ aopalliance.jar			──┥springAOP依赖包
 aspectjweaver-1.7.0.jar	──┻───────────												2
 
 
---38
+--39

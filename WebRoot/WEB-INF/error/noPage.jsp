@@ -1,13 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%String res_path = request.getContextPath()+"/resources";%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>微信公众号管理员登陆</title>
-    <link href="<%=res_path%>/component/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<%=res_path%>/component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<%=res_path%>/css/common.css" rel="stylesheet" type="text/css">
+    <link href="${res_path}/component/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${res_path}/component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="${res_path}/css/common.css" rel="stylesheet" type="text/css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

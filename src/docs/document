@@ -1,3 +1,20 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+	hideDotFiles = dotGitOnly
+		[branch "master"] 
+			remote = origin 
+			merge = refs/heads/master 
+		[remote "origin"] 
+			url = https://github.com/EssionWesika/weChat.git
+			fetch = +refs/heads/*:refs/remotes/origin/*
+	
+
+
 用户类型分为3级，第一级为顶级管理，整个项目有且仅有一，其权限为分配微信公众号总管理，并设其相应权限，无服务功能的权限操作。
 二级用户为客服总管理拥有所有客服权限，客服总管理级可以创建旗下的子管理，并赋予相应服务权限
 三级用户为普通客服

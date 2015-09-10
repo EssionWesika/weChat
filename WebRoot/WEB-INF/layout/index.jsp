@@ -1,15 +1,14 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%String res_path = request.getContextPath()+"/resources";%>
 <!DOCTYPE HTML>
 <html>
 <head>
 	<title>微信公众号后台管理</title>
-	<link href="<%=res_path%>/component/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="<%=res_path%>/component/metisMenu/metisMenu.min.css" rel="stylesheet">
-	<link href="<%=res_path%>/component/sb-admin-2/css/timeline.css" rel="stylesheet">
-	<link href="<%=res_path%>/component/sb-admin-2/css/sb-admin-2.css" rel="stylesheet">
-	<link href="<%=res_path%>/component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="<%=res_path%>/css/common.css" rel="stylesheet" type="text/css">
+	<link href="${res_path}/component/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="${res_path}/component/metisMenu/metisMenu.min.css" rel="stylesheet">
+	<link href="${res_path}/component/sb-admin-2/css/timeline.css" rel="stylesheet">
+	<link href="${res_path}/component/sb-admin-2/css/sb-admin-2.css" rel="stylesheet">
+	<link href="${res_path}/component/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="${res_path}/css/common.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<%@ include file="header-menu.jsp"%>
@@ -568,17 +567,17 @@
 	
 	
     <!-- jQuery -->
-    <script src="<%=res_path%>/js/jquery.min.2.1.3.js"></script>
+    <script src="${res_path}/js/jquery.min.2.1.3.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="<%=res_path%>/component/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${res_path}/component/bootstrap/js/bootstrap.min.js"></script>
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="<%=res_path%>/component/metisMenu/metisMenu.min.js"></script>
+    <script src="${res_path}/component/metisMenu/metisMenu.min.js"></script>
     <!-- Morris Charts JavaScript -->
 <!--     <script src="../bower_components/raphael/raphael-min.js"></script>
     <script src="../bower_components/morrisjs/morris.min.js"></script>
     <script src="../js/morris-data.js"></script>
  -->
     <!-- Custom Theme JavaScript -->
-    <script src="<%=res_path%>/component/sb-admin-2/js/sb-admin-2.js"></script>
+    <script src="${res_path}/component/sb-admin-2/js/sb-admin-2.js"></script>
 </body>
 </html>
