@@ -4,6 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%
 String lang = (String)request.getSession().getAttribute("locale");
+/* request.setAttribute("useyzm",); */
 %>
 <!DOCTYPE html>
 <html>
@@ -40,10 +41,13 @@ String lang = (String)request.getSession().getAttribute("locale");
     body{
     	background: url("${res_path}/images/bgImg/bg002.jpg");
     }
+    .unsee{
+    	background-color: rgba(255,255,255,0.0);
+    }
 </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container">${useyzm }
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
@@ -57,17 +61,14 @@ String lang = (String)request.getSession().getAttribute("locale");
                         <div class="form-group">
                             <input type="password" class="form-control" placeholder="<%=SpringUtils.getMessage("login.pass",lang)%>" id="pass" >
                         </div>
+                        <c:if test="${logingTimes==useyzm}">
                         <div class="input-group form-group">
                             <input type="text" class="form-control" placeholder="<%=SpringUtils.getMessage("login.ver",lang)%>" id="verify">
                             <span class="input-group-yzm" id="yzm">
                                 <img src="verifyCode" class="ver-code" />
                             </span>
                         </div>
-                        <div class="form-group ct">
-                            <button class="btn btn-success btn-outline" value="1">甲级管理</button>
-                            <button class="btn btn-success btn-outline" value="2">乙级管理</button>
-                            <button class="btn btn-success btn-outline" value="3">丙级管理</button>
-                        </div>
+                        </c:if>
                         <button class="btn btn-primary btn-outline btn-block" onclick="login()">
                         	<%=SpringUtils.getMessage("login.login",lang)%>
 						</button>
@@ -100,14 +101,14 @@ function login(){
     $(".error-color").remove();
     var $acc=$("#acc");
     var $pass=$("#pass");
-    var ver= $.trim($("#verify").val());
+    var ver= $("#verify").val()==""?0:$("#verify").val();
     var ptHtml=function(data){
         return "<div class='form-group error-color'>"+data+"</div>";
     };
-    if(isNull([ver])){
+    /* if(isNull([ver])){
         alert("请输入验证码");
         return false;
-    }
+    } */
     if(isNull([$.trim($acc.val())])){
         $acc.parent().after(ptHtml("请出入账号"));
     }else if(isNull([$.trim($pass.val())])){
@@ -128,6 +129,7 @@ function login(){
                     post('manager',{type:arr[1]});
                 }else{
                     alert(dc(data));
+                    window.location.reload();
                 }
             },
             error: function(){

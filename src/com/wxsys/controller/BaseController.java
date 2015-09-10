@@ -7,21 +7,43 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
+
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.wxsys.model.Manager;
 import com.wxsys.util.CommonUtil;
 import com.wxsys.util.SpringUtils;
 
 public class BaseController{
 	
+	protected Log log = LogFactory.getLog(getClass());
+	
 	protected static final CommonUtil cu =SpringUtils.getBean("commonUtil", CommonUtil.class);
 	
 	/**
-	 * 动态获取国际化数据，返回被编码后的数据，前台接收需要解码
+	 * 通过请求 动态获取国际化数据，返回被编码后的数据，前台接收需要解码
 	 * @param key
 	 * @param req
 	 * @return message
 	 */
 	protected String message(String key,HttpServletRequest req){
 		String value = SpringUtils.getMessage(key, getLocale(req));
+		try {
+			return URLEncoder.encode(value,"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "E0000";
+		}
+	}
+	/**
+	 * 通过使用者喜好  动态获取国际化数据，返回被编码后的数据，前台接收需要解码
+	 * @param key
+	 * @param req
+	 * @return message
+	 */
+	protected String message(String key,String locale){
+		String value = SpringUtils.getMessage(key,locale);
 		try {
 			return URLEncoder.encode(value,"UTF-8");
 		} catch (UnsupportedEncodingException e) {
@@ -46,5 +68,13 @@ public class BaseController{
         res.setHeader("cache-control", "no-cache");
         res.setDateHeader("expires", 0);
 	}
-	
+	/**
+	 * 获取已登录的管理员/用户
+	 * @param req
+	 * @return Manager
+	 */
+	protected Manager getLoginManager(HttpServletRequest req){
+		
+		return (Manager)req.getSession().getAttribute("manager");
+	}
 }

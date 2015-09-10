@@ -17,12 +17,12 @@ public class WebAppListener implements ApplicationListener<ApplicationEvent> {
         try {
             if (applicationEvent.getSource() instanceof XmlWebApplicationContext) {
                 if (((XmlWebApplicationContext) applicationEvent.getSource()).getDisplayName().equals("Root WebApplicationContext")) {
-                	log.info(">=-------------- 容器开始 --------------=<");
+                	log.info(">-------------- 容器开始 ---------------<");
                 	ServletContext sc = ((XmlWebApplicationContext) applicationEvent.getSource()).getServletContext();
                 	
-                    sc.setAttribute("res_path", sc.getContextPath()+"/resource");
+                    sc.setAttribute("res_path", sc.getContextPath()+"/resources");
                     sc.setAttribute("path", sc.getContextPath());
-                    log.info(">=-------------- 路径初始化完毕 --------------=<");
+                    log.info(">--------------- 路径初始化完毕 ---------------<");
                 	
                 }
             }

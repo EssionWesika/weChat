@@ -47,6 +47,7 @@
 			<list>
 				<value>classpath:language/message</value>
 				<value>classpath:language/error</value>
+				<value>classpath:config</value>
 				<value>classpath:wxConfig</value>
 			</list>
 		</property>

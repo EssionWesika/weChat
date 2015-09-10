@@ -73,7 +73,7 @@ public class CommonUtil {
 	 */
 	public String MD5(String a,String ...charset){
 		try {
-			if(isNull(charset)){
+			if(!isNull(charset)){
 				return DigestUtils.md5Hex(a.getBytes(charset[0]));
 			}else{
 				return DigestUtils.md5Hex(a.getBytes("UTF-8"));
@@ -222,11 +222,9 @@ public class CommonUtil {
 	public Boolean isNull(String... a){
 		if(a==null||a.length==0){
 			return true;
-		}else if(a.length==1){
-			return(a[0]==null)||(a[0].trim()=="");
 		}else{
 			for (int i = 0; i < a.length; i++) {
-				if(((a[i]==null)||(a[i].trim()==""))==true)return true;
+				if(((a[i]==null)||(a[i].trim().equals(""))==true))return true;
 			}
 			return false;
 		}
