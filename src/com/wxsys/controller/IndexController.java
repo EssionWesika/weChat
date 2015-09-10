@@ -35,6 +35,7 @@ public class IndexController extends BaseController{
 		return "layout/index";
 	}
 	
+	
 	@RequestMapping(value = "/login")
 	@ResponseBody
 	public String login(@RequestParam String acc,String pass,String ver,HttpServletRequest req,HttpServletResponse res){
@@ -47,7 +48,7 @@ public class IndexController extends BaseController{
 		//若登陆超过指定次数，则开启验证码
 		Integer times;String st = message("useyzm",req);
 		try { times=Integer.parseInt(st); } catch (NumberFormatException e) { times=1; }
-		req.setAttribute("useyzm",times);
+		req.getSession().setAttribute("useyzm",times);
 		if(loginTimes!=null&&loginTimes==times){
 			String verify = ((String) req.getSession().getAttribute("ver")).toLowerCase();
 			if(!ver.toLowerCase().equals(verify))return message("E1104",req);

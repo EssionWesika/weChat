@@ -15,10 +15,17 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+<style type="text/css">
+	body{
+    	background: url("${res_path}/images/bgImg/bg005.jpg");
+		/* background-size:100% ;
+    	background-color: black; */
+    }
+</style>
 </head>
 <body>
 	<div class="container">
-		<div class="row">
+		<div class="row" style="padding-top: 2%">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">添加客服总管理</div>
@@ -27,11 +34,12 @@
 							<div class="col-md-4">
 								xx
 							</div>
-							<!-- /.col-lg-6 (nested) -->
 							<div class="col-md-4">
 								xx
 							</div>
-							<!-- /.col-lg-6 (nested) -->
+							<div class="col-md-4">
+								xx
+							</div>
 						</div>
 						<!-- /.row (nested) -->
 					</div>
