@@ -49,15 +49,10 @@ public class SpringTest extends AbstractJUnit4SpringContextTests{
 		
 	}
 	
-		public static void main(String[] args) {
-			Integer a = null;
-			String b ="b";
-			String c ="b";
-			if(a!=null && 1==1){
-				System.out.println("yes");
-			}else{
-				System.out.println("no");
-			}
-		}
-
+	
+	
+	public static void main(String[] args) {
+		
+		
+	}
 }

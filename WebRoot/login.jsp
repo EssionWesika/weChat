@@ -96,6 +96,14 @@ $(function(){
     })
 });
 
+$(window).keydown(function(event){
+    switch(event.keyCode) {
+        case 13:login();
+
+        // 常用keyCode： 空格 32   Enter 13   ESC 27 更多详细信息:     http://unixpapa.com/js/key.html
+    }
+});
+
 function login(){
     $(".error-color").remove();
     var $acc=$("#acc");

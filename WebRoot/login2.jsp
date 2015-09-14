@@ -39,36 +39,25 @@ String lang = (String)request.getSession().getAttribute("locale");
         margin-bottom: 5px;
     }
     body{
-    	background: url("${res_path}/images/bgImg/bg004_edit.jpg") no-repeat;
+    	background: url("${res_path}/images/bgImg/bg004_edit.jpg") no-repeat black;
 		background-size:100% ;
-    	background-color: black;
+    	/*background-color: black;*/
     }
-    .unsee-div{
-    	background-color: rgba(255,255,255,0.0);
-    }
-    .unsee-input{
-    	background-color:transparent;
-    	border: 1px solid #286090;
-    }
+
     .login-div{
     	margin-top: 10%;
 		float: right;
 		/* margin-right: 10%;
 		margin-left: 10%; */
     }
-    /* @media screen and (max-width:1170px){
-		.login-div{ margin-right:0;margin-left:0; }
-	} */
-	/* @media screen and (max-width:768px){
-		.container{ width: 100%; }
-	} */ 
+    
 </style>
 </head>
 <body>
 <%-- <body BACKGROUND= "${res_path}/images/bgImg/bg004_edit.jpg" style="background-repeat: no-repeat;background-attachment: scroll;margin: auto;"> --%> 
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-xs-12 login-div">
+            <div class="col-xs-12 col-md-3 login-div ">
                 <div class="login-panel panel-default unsee-div">
                     <%-- <div class="panel-heading">
                         <h3 class="panel-title"><%=SpringUtils.getMessage("login.title",lang)%></h3>
@@ -88,7 +77,7 @@ String lang = (String)request.getSession().getAttribute("locale");
                             </span>
                         </div>
                         </c:if>
-                        <button class="btn btn-primary btn-outline btn-block" onclick="login()">
+                        <button class="btn btn-primary btn-outline btn-block" onclick="login()" style="color: rgba(158, 158, 158, 1);">
                         	<%=SpringUtils.getMessage("login.login",lang)%>
 						</button>
                     </div>
@@ -114,6 +103,13 @@ $(function(){
         $("#yzm").empty();
         $(this).html("<img src='verifyCode?num="+num+"' class='ver-code'/>");
     })
+
+});
+$(window).keydown(function(event){
+    switch(event.keyCode) {
+        case 13:login();
+        // 常用keyCode： 空格 32   Enter 13   ESC 27 更多详细信息:     http://unixpapa.com/js/key.html
+    }
 });
 
 function login(){
@@ -124,14 +120,16 @@ function login(){
     var ptHtml=function(data){
         return "<div class='form-group error-color'>"+data+"</div>";
     };
-    /* if(isNull([ver])){
-        alert("请输入验证码");
-        return false;
-    } */
+    if($("#yzm").length>0){
+        if(isNull([ver])){
+            alert("请输入验证码");
+            return false;
+        }
+    }
     if(isNull([$.trim($acc.val())])){
-        $acc.parent().after(ptHtml("请出入账号"));
+        $acc.parent().after(ptHtml("请输入账号"));
     }else if(isNull([$.trim($pass.val())])){
-        $pass.parent().after(ptHtml("请出入密码"));
+        $pass.parent().after(ptHtml("请输入密码"));
     }else{
         $.ajax({
             type: "post",

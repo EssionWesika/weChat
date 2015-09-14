@@ -17,8 +17,12 @@ public class Manager extends BaseEntity{
 	private String hasAppID;//该用户所持有并管理的微信AppId
 	private String hasModelList;//该用户被赋予操作模块的权限
 	private String language;//设置语言偏好
+	private String belong;//属于（工作组或公司）
 	
-	
+	@Column(name = "belong")
+	public String getBelong() {
+		return belong;
+	}
 	@Column(name = "language")
 	public String getLanguage() {
 		return language;
@@ -47,6 +51,9 @@ public class Manager extends BaseEntity{
 	public String getHasAppID() {
 		return hasAppID;
 	}
+	public void setBelong(String belong) {
+		this.belong = belong;
+	}
 	public void setLanguage(String language) {
 		this.language = language;
 	}
@@ -68,24 +75,11 @@ public class Manager extends BaseEntity{
 	public void setHasAppID(String hasAppID) {
 		this.hasAppID = hasAppID;
 	}
-	public Manager() {
-		super();
-	}
-	public Manager(String account, String password, Long loginTime,
-			Integer authority, String hasAppID, String hasModelList) {
-		super();
-		this.account = account;
-		this.password = password;
-		this.loginTime = loginTime;
-		this.authority = authority;
-		this.hasAppID = hasAppID;
-		this.hasModelList = hasModelList;
-	}
 	@Override
 	public String toString() {
 		return "Manager [account=" + account + ", password=" + password
 				+ ", loginTime=" + loginTime + ", authority=" + authority
 				+ ", hasAppID=" + hasAppID + ", hasModelList=" + hasModelList
-				+ "]";
+				+ ", language=" + language + ", belong=" + belong + "]";
 	}
 }

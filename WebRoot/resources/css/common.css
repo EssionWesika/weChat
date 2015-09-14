@@ -4,6 +4,9 @@
 .rit{
 	float: right;
 }
+.lft{
+	float: left;
+}
 .hand{
 	cursor: pointer;
 }
@@ -12,4 +15,11 @@
 }
 .error-color{
 	color: #98000e;
+}
+.unsee-div{
+	background-color: rgba(255,255,255,0.0);
+}
+.unsee-input{
+	background-color:transparent;
+	border: 1px solid #286090;
 }
