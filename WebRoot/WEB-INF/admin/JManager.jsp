@@ -105,12 +105,14 @@
 							<div class="col-xs-12">
 								<div class="lft" style="margin-top: 1%">应用ID与密钥是否对该管理者可见：</div>
 								<div class="switch switch-small rit">
-									<input type="checkbox" checked />
+									<input class="authority" name="a" type="checkbox" checked />
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
+
       		</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -170,11 +172,44 @@ function createManager(){
 		$appsecret.after(html("密匙"));
 		return false;
 	}
-
 	if(check_pass()){
+		$.ajax({
+			type: "post",
+			url: "createManager",
+			data: {
+				acc: $.trim($acc.val()),
+				pass: $.trim($pass.val()),
+				belong: $.trim($belong.val()),
+				appid: $.trim($appid.val()),
+				appsecret: $.trim($appsecret.val()),
+				authority:getRadio()
+			},
+			dataType: "text",
+			success: function(data){
+				if(data=="success"){
 
+				}else{
+					alert(dc(data));
+				}
+			},
+			error: function(){
+				alert("服务器已关闭");
+			}
+		});
 	}
+}
 
+function getRadio(){
+	var $au = $(".authority");
+	var data = '{';
+	$.each($au, function(i, n){
+		data+='"'+$(n).attr("name")+'":"'+((n.checked)?0:1)+'"';
+		if(i!=($au.length-1)){
+			data+=',';
+		}
+	});
+	data=data+'}';
+	return data.toString();//'{"name":"John"}'
 }
 </script>
 </body>

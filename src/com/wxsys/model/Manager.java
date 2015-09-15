@@ -18,38 +18,29 @@ public class Manager extends BaseEntity{
 	private String hasModelList;//该用户被赋予操作模块的权限
 	private String language;//设置语言偏好
 	private String belong;//属于（工作组或公司）
+	private String auDetail;//权限细节
 	
 	@Column(name = "belong")
-	public String getBelong() {
-		return belong;
-	}
+	public String getBelong() { return belong; }
 	@Column(name = "language")
-	public String getLanguage() {
-		return language;
-	}
+	public String getLanguage() { return language; }
 	@Column(name = "hasModelList")
-	public String getHasModelList() {
-		return hasModelList;
-	}
+	public String getHasModelList() { return hasModelList; }
 	@Column(name = "account")
-	public String getAccount() {
-		return account;
-	}
+	public String getAccount() { return account; }
 	@Column(name = "password")
-	public String getPassword() {
-		return password;
-	}
+	public String getPassword() { return password; }
 	@Column(name = "login_time")
-	public Long getLoginTime() {
-		return loginTime;
-	}
+	public Long getLoginTime() { return loginTime; }
 	@Column(name = "authority")
-	public Integer getAuthority() {
-		return authority;
-	}
+	public Integer getAuthority() { return authority; }
 	@Column(name = "has_appid")
-	public String getHasAppID() {
-		return hasAppID;
+	public String getHasAppID() { return hasAppID; }
+	@Column(name = "au_detail")
+	public String getAuDetail() { return auDetail; }
+	
+	public void setAuDetail(String auDetail) {
+		this.auDetail = auDetail;
 	}
 	public void setBelong(String belong) {
 		this.belong = belong;
@@ -80,6 +71,7 @@ public class Manager extends BaseEntity{
 		return "Manager [account=" + account + ", password=" + password
 				+ ", loginTime=" + loginTime + ", authority=" + authority
 				+ ", hasAppID=" + hasAppID + ", hasModelList=" + hasModelList
-				+ ", language=" + language + ", belong=" + belong + "]";
+				+ ", language=" + language + ", belong=" + belong
+				+ ", auDetail=" + auDetail + "]";
 	}
 }

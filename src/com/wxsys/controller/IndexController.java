@@ -1,7 +1,5 @@
 package com.wxsys.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -95,16 +93,15 @@ public class IndexController extends BaseController{
 		return "success";
 	}
 	
-	@RequestMapping(value = "/manager")
-	public String manager(@RequestParam String type,HttpServletRequest request,HttpServletResponse response){
-		String key = cu.isNull(type)?"e":type.trim();
-		switch (key) {
-		case "0":
-			return "admin/JManager";
-		default:
-			break;
-		}
-		return "admin/manager";
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

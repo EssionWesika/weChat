@@ -30,41 +30,19 @@ public class TK_Access_Token extends BaseEntity {
 	
 	private static final long serialVersionUID = 6549140835388306357L;
 	
-	/**
-	 * 第三方用户唯一凭证
-	 */
-	private String appid;
-	/**
-	 * 第三方用户唯一凭证密钥，即appsecret
-	 */
-	private String secret;
-	
-	/**
-	 * 获取到的凭证
-	 */
-	private String access_token;
-	
-	/**
-	 * 凭证有效时间，单位：秒
-	 */
-	private Long expires_in;
+	private String appid;//第三方用户唯一凭证
+	private String secret;//第三方用户唯一凭证密钥，即appsecret
+	private String access_token;//获取到的凭证
+	private Long expires_in;//凭证有效时间，单位：秒
 	
 	@Column(name = "appid")
-	public String getAppid() {
-		return appid;
-	}
+	public String getAppid() { return appid; }
 	@Column(name = "secret")
-	public String getSecret() {
-		return secret;
-	}
+	public String getSecret() { return secret; }
 	@Column(name = "access_token")
-	public String getAccess_token() {
-		return access_token;
-	}
+	public String getAccess_token() { return access_token; }
 	@Column(name = "expires_in")
-	public Long getExpires_in() {
-		return expires_in;
-	}
+	public Long getExpires_in() { return expires_in; }
 	
 	public void setAppid(String appid) {
 		this.appid = appid;

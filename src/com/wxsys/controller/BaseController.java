@@ -1,10 +1,12 @@
 package com.wxsys.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 
 
@@ -21,6 +23,31 @@ public class BaseController{
 	protected Log log = LogFactory.getLog(getClass());
 	
 	protected static final CommonUtil cu =SpringUtils.getBean("commonUtil", CommonUtil.class);
+	
+	/**
+	 * URL解码
+	 * @param str
+	 * @return
+	 */
+	protected String dc(String str) {
+		try {
+			return URLDecoder.decode(str,"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "";
+		}
+	}
+	/**
+	 * URL编码
+	 * @param str
+	 * @return
+	 */
+	protected String ec(String str) {
+		try {
+			return URLEncoder.encode(str,"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return "";
+		}
+	}
 	
 	/**
 	 * 通过请求 动态获取国际化数据，返回被编码后的数据，前台接收需要解码
@@ -76,5 +103,15 @@ public class BaseController{
 	protected Manager getLoginManager(HttpServletRequest req){
 		
 		return (Manager)req.getSession().getAttribute("manager");
+	}
+
+	/**
+	 * 判断权限数据是否有效,如果有效返回true
+	 * @param value
+	 * @return
+	 */
+	public Boolean verAU(String value){
+		
+		return (value.equals("0")||value.equals("1"))?true:false;
 	}
 }
