@@ -133,7 +133,7 @@ function login(){
     }else{
         $.ajax({
             type: "post",
-            url: "login",
+            url: "dologin",
             data: {
                 acc: $.trim($acc.val()),
                 pass: $.trim($pass.val()),

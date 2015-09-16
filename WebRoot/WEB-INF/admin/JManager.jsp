@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +28,17 @@
     	background-color: black; */
     }
 	.color-sty{
-		color: #4B6A76 !important;
+		/* color: #4B6A76 !important; */
 	}
 	.input-add{
 		background-color: rgba(255, 255, 255, 1) !important;
 		border: 1px solid #286090;
+	}
+	.min-h{
+		min-height: 250px;
+	}
+	.mana-info{
+		margin-left: 10px;
 	}
 </style>
 </head>
@@ -38,24 +47,39 @@
 		<div class="row" style="padding-top: 2%">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">添加客服总管理</div>
+					<div class="panel-heading">微信公众号总管理</div>
 					<div class="panel-body">
 						<div class="row">
+						<c:forEach items="${managerList}" var="manager">
 							<div class="col-md-4">
-								<div class="panel panel-default">
-									<div class="panel-body ct">
+								<div class="panel panel-default min-h">
+									<div class="panel-heading">${manager.belong}<i class="fa fa-trash-o rit"></i></div>
+									<ul class="list-group">
+										<li class="list-group-item"><strong>AppID：</strong><span class="mana-info">${manager.hasAppID}</span></li>
+										<li class="list-group-item"><strong>管理者：</strong><span class="mana-info">${manager.nickname}</span><i class="fa fa-cog rit"></i></li>
+										<li class="list-group-item">
+											<strong>最后登录时间：</strong>
+											<span class="mana-info">
+												<fmt:formatDate value="${manager.loginTime}" type="date" dateStyle="long" timeStyle="long" pattern="yyyy-MM-dd"/>
+											</span>
+										</li>
+										<li class="list-group-item"><strong>旗下子管理员:</strong><span class="mana-info">${(empty manager.under)?'0':manager.under}</span>&nbsp;人<i class="fa fa-eye rit"></i></li>
+										<li class="list-group-item ct"><i>权限设置</i></li>
+									</ul>
+								</div>
+							</div>
+						</c:forEach>
+							<div class="col-md-4">
+								<div class="min-h" style="margin-bottom: 20px;">
+									<div class="panel-body ct " style="padding-top: 90px;">
 										<button type="button" class="color-sty btn btn-outline btn-primary btn-lg" data-toggle="modal" data-target="#addModal">
-											<i class="glyphicon-plus"></i>&nbsp;新增管理
+											<i class="glyphicon-plus"></i>&nbsp;新增微信公众号
 										</button>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-4">
-								xx
-							</div>
-							<div class="col-md-4">
-								xx
-							</div>
+							
+
 						</div>
 					</div>
 				</div>
@@ -71,17 +95,6 @@
 				<h4 class="modal-title">新增管理</h4>
       		</div>
 			<div class="modal-body">
-				<div class="panel panel-default">
-					<div class="panel-heading">基础信息</div>
-					<div class="panel-body">
-						<div class="form-group">
-							<input id="acc" type="text" class="form-control unsee-input" placeholder="管理者账号" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
-						</div>
-						<div class="form-group">
-							<input id="pass" type="password" class="form-control unsee-input" placeholder="管理者密码" onblur="check_pass()">
-						</div>
-					</div>
-				</div>
 
 				<div class="panel panel-default">
 					<div class="panel-heading">公众号设置</div>
@@ -94,6 +107,21 @@
 						</div>
 						<div class="form-group">
 							<input id="appsecret" type="text" class="form-control unsee-input" placeholder="AppSecret(应用密钥)">
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">设置管理者</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<input id="acc" type="text" class="form-control unsee-input" placeholder="管理者账号" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')">
+						</div>
+						<div class="form-group">
+							<input id="pass" type="password" class="form-control unsee-input" placeholder="管理者密码" onblur="check_pass()">
+						</div>
+						<div class="form-group">
+							<input id="nickname" type="text" class="form-control unsee-input" placeholder="使用者昵称或姓名" >
 						</div>
 					</div>
 				</div>
@@ -153,6 +181,7 @@ function createManager(){
 	var $belong = $("#belong");
 	var $appid = $("#appid");
 	var $appsecret = $("#appsecret");
+	var $nickname = $("#nickname");
 	var html = function(data){
 		return "<p class='err-msg' style='color: red'>请输入"+data+"</p>";
 	};
@@ -172,6 +201,10 @@ function createManager(){
 		$appsecret.after(html("密匙"));
 		return false;
 	}
+	if(isNull([$.trim($nickname.val())])){
+		$nickname.after(html("姓名或昵称"));
+		return false;
+	}
 	if(check_pass()){
 		$.ajax({
 			type: "post",
@@ -182,12 +215,14 @@ function createManager(){
 				belong: $.trim($belong.val()),
 				appid: $.trim($appid.val()),
 				appsecret: $.trim($appsecret.val()),
+				nickname:$.trim($nickname.val()),
 				authority:getRadio()
 			},
 			dataType: "text",
 			success: function(data){
 				if(data=="success"){
-
+					alert("创建成功");
+					window.location.reload();
 				}else{
 					alert(dc(data));
 				}

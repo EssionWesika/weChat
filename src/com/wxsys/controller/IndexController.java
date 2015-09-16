@@ -1,6 +1,8 @@
 package com.wxsys.controller;
 
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,8 +35,23 @@ public class IndexController extends BaseController{
 		return "layout/index";
 	}
 	
-	
 	@RequestMapping(value = "/login")
+	public String lgoin2(HttpServletRequest req){
+		Manager manager = getLoginManager(req);
+		if(manager==null){
+			return "login";
+		}else{
+			switch (manager.getAuthority()) {
+				case 0: return "admin/JManager";
+				case 1: return "success_1";
+				case 2: return "success_2";
+				default: return message("E1103",req);
+			}
+		}
+	}
+	
+	
+	@RequestMapping(value = "/dologin")
 	@ResponseBody
 	public String login(@RequestParam String acc,String pass,String ver,HttpServletRequest req,HttpServletResponse res){
 		//获取登陆请求次数
@@ -53,18 +70,25 @@ public class IndexController extends BaseController{
 		}
 		//密码验证，并跳转到指定权限页面
 		if(manager.getPassword().equals(cu.MD5(pass.trim()))){
+			Long time = new Date().getTime();
 			switch (manager.getAuthority()) {
 			case 0:
 				req.getSession().setAttribute("manager", manager);
 				req.getSession().removeAttribute("loginTimes");
+				manager.setLoginTime(time);
+				managerService.update(manager);
 				return "success_0";
 			case 1:
 				req.getSession().setAttribute("manager", manager);
 				req.getSession().removeAttribute("loginTimes");
+				manager.setLoginTime(time);
+				managerService.update(manager);
 				return "success_1";
 			case 2:
 				req.getSession().setAttribute("manager", manager);
 				req.getSession().removeAttribute("loginTimes");
+				manager.setLoginTime(time);
+				managerService.update(manager);
 				return "success_2";
 			default:
 				return message("E1103",req);

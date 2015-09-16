@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -30,9 +31,12 @@ public class InitData extends AbstractJUnit4SpringContextTests{
 	
 //	MyStringUtil m = SpringUtils.getBean("myStringUtil", MyStringUtil.class);
 	
+	
+//	@BeforeClass
 	@Test
-	public void test1(){
-		CommonUtil c = SpringUtils.getBean("commonUtil", CommonUtil.class);
+	public  void test1(){
+		/*CommonUtil c = SpringUtils.getBean("commonUtil", CommonUtil.class);*/
+		CommonUtil c = new CommonUtil();
 		Manager m = new Manager();
 		m.setAccount("admin");
 		m.setPassword(c.MD5("123456"));

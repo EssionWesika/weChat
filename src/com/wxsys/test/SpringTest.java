@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.wxsys.model.Manager;
 import com.wxsys.model.TK_Access_Token;
 import com.wxsys.service.AccessTokenService;
 import com.wxsys.service.ManagerService;
@@ -30,22 +31,9 @@ public class SpringTest extends AbstractJUnit4SpringContextTests{
 	ManagerService managerService; 
 	@Test
 	public void test1(){
-		/*MyStringUtil ms =SpringUtils.getBean("myStringUtil",MyStringUtil.class);
-		System.out.println(ms.isNull("99"));*/
-		/*TK_Access_Token a = new TK_Access_Token();
-		a.setAccess_token("q");
-		a.setAppid("1234656");
-		a.setCreateTime(new Date().getTime());
-		a.setModifyTime(new Date().getTime());
-		a.setSecret("sadsadasd");
-		a.setExpires_in(7200L);
-		accessTokenService.save(a);*/
-		/*List<TK_Access_Token> a =accessTokenService.getList();
-		for (int j = 0; j < a.size(); j++) {
-			accessTokenService.delete(a.get(j));
-		}*/
-		
-		System.out.println(managerService.getList());
+		Manager manager = managerService.get("account", "admin3");
+		manager.setLoginTime(new Date().getTime());
+		managerService.update(manager);
 		
 	}
 	

@@ -12,6 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 import java.util.Random;
 import java.util.UUID;
 import java.util.regex.Pattern;
@@ -257,4 +258,7 @@ public class CommonUtil {
             }  
         }  
     }
+	public static void main(String[] args) {
+		System.out.println(new Date().getTime());
+	}
 }
